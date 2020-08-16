@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom'; // routing define
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <App />
+      </Suspense>
+    </Router>,
   document.getElementById('root')
 );
 
