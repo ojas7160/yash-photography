@@ -6,7 +6,7 @@ import { Container, Col, Row, Carousel } from 'react-bootstrap';
 
 const topSection = (props) => (
   <section className="welcome-area">
-    <Carousel interval={2000}>
+    <Carousel pause={false} interval={2000}>
       <Carousel.Item interval={2000}>
         <div
           className="single-welcome-slide bg-img bg-overlay"

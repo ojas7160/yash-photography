@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
+import ReactCompareImage from 'react-compare-image';
+import ImageSlider from "react-image-comparison-slider";
+
 import './galleryComponent.css';
 import img3 from '../../img/bg-img/3.jpg'
 import img4 from '../../img/bg-img/4.jpg';
@@ -14,8 +17,20 @@ import img36 from '../../img/bg-img/36.jpg'
 import img37 from '../../img/bg-img/37.jpg'
 import img38 from '../../img/bg-img/38.jpg';
 
-const gallery = (props) => {
+const Gallery = (props) => {
   const currentPath = props.location.pathname
+  
+  useEffect(() => {
+    var imageContainer = document.querySelector("#top-image");
+    console.log(imageContainer)
+    var image = imageContainer.querySelector("img");
+    var range = document.querySelector("#range-input");
+  
+    range.oninput = function() {
+      imageContainer.style.width = this.value + "%";
+    }
+  }, [])
+
   return (
     <div>
       {
@@ -57,11 +72,19 @@ const gallery = (props) => {
 
           <Row className="alime-portfolio">
             <Col md={3}>
-              <div className="single-portfolio-content mb-30 animate__animated animate__slideInUp">
-                <img src={img3} alt="" />
-                <div className="hover-content">
-                  <a href={img3} className="portfolio-img">+</a>
+              <div className=" mb-30 animate__animated animate__slideInUp">
+                {/* <img src={img3} alt="" /> */}
+                {/* <ReactCompareImage hover="true" leftImage={img3} rightImage={img7} /> */}
+                <div className="image-slider">
+                  <div id="top-image">
+                    <img id="after" src={img10} alt="After" style={{height: '100%', objectFit: 'cover'}}/>
+                  </div>
+                  <img src={img3} alt="Before" />
+                  <input id="range-input" type="range" />
                 </div>
+                {/* <div className="hover-content">
+                  <a href={img3} className="portfolio-img">+</a>
+                </div> */}
               </div>
               <div className="single-portfolio-content mb-30 animate__animated animate__slideInUp">
                 <img src={img7} alt="" />
@@ -152,4 +175,4 @@ const gallery = (props) => {
 }
   
 
-export default withRouter(gallery);
+export default withRouter(Gallery);
