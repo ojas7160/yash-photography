@@ -6,21 +6,21 @@ import * as userService from '../../services/users/userService';
 import { Container, Col, Row, Carousel } from 'react-bootstrap';
 
 const TopSection = (props) => {
-  useEffect(() => {
-    let userBody = {
-      name: 'Yash Wadhwa',
-      email: 'yashwadhwa@photo.com',
-      contact: '9811188814',
-      address: '932 Rani bagh, Delhi',
-      pincode: 110034,
-      password: window.btoa('yashwadhwa'),
-      role: 'admin'
-    }
-    userService.default.signup(userBody)
-    .then(res => {
-      console.log(res)
-    })
-  }, [])
+  // useEffect(() => {
+  //   let userBody = {
+  //     name: 'Yash Wadhwa',
+  //     email: 'yashwadhwa@photo.com',
+  //     contact: '9811188814',
+  //     address: '932 Rani bagh, Delhi',
+  //     pincode: 110034,
+  //     password: window.btoa('yashwadhwa'),
+  //     role: 'admin'
+  //   }
+  //   userService.default.signup(userBody)
+  //   .then(res => {
+  //     console.log(res)
+  //   })
+  // }, [])
   return (
     <section className="welcome-area">
       <Carousel pause={false} interval={2000}>
