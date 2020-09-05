@@ -22,7 +22,6 @@ const Gallery = (props) => {
   
   useEffect(() => {
     var imageContainer = document.querySelector("#top-image");
-    console.log(imageContainer)
     var image = imageContainer.querySelector("img");
     var range = document.querySelector("#range-input");
   
