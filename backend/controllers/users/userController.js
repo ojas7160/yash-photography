@@ -32,6 +32,10 @@ exports.userLogin = (req, res, next) => {
       token: token,
       user: fetchedUser
     })
+  }, err => {
+    res.status(500).json({
+      message: err
+    })
   })
 }
 

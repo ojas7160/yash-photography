@@ -29,6 +29,8 @@ const header = (props) => {
                     <li className={props.location.pathname == '/about' ? 'active' : ''}><Link to="/about">About</Link></li>
                     <li className={props.location.pathname == '/gallery' ? 'active' : ''}><Link to="/gallery">Gallery</Link></li>
                     <li className={props.location.pathname == '/contact' ? 'active' : ''}><Link to="/contact">Contact</Link></li>
+                    <li className={props.location.pathname == '/login' ? 'active' : ''}><Link to="/login">Login</Link></li>
+                    <li className={props.location.pathname == '/signup' ? 'active' : ''}><Link to="/signup">Signup</Link></li>
                   </ul>
 
                   <div className="search-icon" data-toggle="modal" data-target="#searchModal"><i className="ti-search"></i></div>

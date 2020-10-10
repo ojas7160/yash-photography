@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const express = require('express');
 const userRoute = require('./routes/userRoute');
+const infoRoute = require('./routes/infoRoute');
 // const postRoute = require('./routes/postsRoutes/postsRoute');
 // const likeRoute = require('./routes/likeRoutes/likeRoute');
 
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 
 //routes
 app.use("/api/users", userRoute);
+app.use("/api/info", infoRoute);
 // app.use("/api/posts", postRoute);
 // app.use("/api/likes", likeRoute);
 

@@ -5,6 +5,9 @@ const homeComponent = lazy(() => import('../components/home/homeComponent'));
 const aboutComponent = lazy(() => import('../components/about/aboutComponent'));
 const galleryComponent = lazy(() => import('../components/gallery/galleryComponent'));
 const contactComponent = lazy(() => import ('../components/contact/contactComponent'));
+const signupComponent = lazy(() => import ('../components/signup/signupComponent'));
+const loginComponent = lazy(() => import('../components/login/loginComponent'));
+
 const routes = (props) => {
   return (
     <Switch>
@@ -12,6 +15,8 @@ const routes = (props) => {
       <Route path="/about" component={ aboutComponent } />
       <Route path="/gallery" component={ galleryComponent } />
       <Route path="/contact" component={ contactComponent } />
+      <Route path="/signup" component={ signupComponent } />
+      <Route path="/login" component={loginComponent} />
       <Route path = "/" exact component = { homeComponent } />
     </Switch>
   )
