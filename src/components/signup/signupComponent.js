@@ -134,7 +134,7 @@ const Signup = (props) => {
 
 export default Signup;
 
-{
+
   /* <!DOCTYPE html>
 <html lang="en">
 
@@ -180,4 +180,4 @@ export default Signup;
 
 </html>
 <!-- end document--></div> */
-}
+

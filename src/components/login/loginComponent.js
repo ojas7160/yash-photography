@@ -9,20 +9,30 @@ const Login = (props) => {
 	const [email, changeEmail] = useState('');
 	const [password, changePassword] = useState('')
 	const [token, setToken] = useState(null);
+	
+	// const updateToken = (t) => {
+	// 	console.log(t)
+	// 	setToken(t)
+	// 	console.log(token)
+	// }
+
 
 	const login = (e) => {
 		// console.log(props);
-		console.log(email, password)
+		console.log(email, password, token)
 		userService.default.login({email: email, password: window.btoa(password)})
 		.then(res => {
 			console.log(res);
-			setToken(res.data.token);
+			setToken(res.data.token)
+			// updateToken(res.data.token);
 			props.onLogin(res.data.token);
-			console.log(token)
+			setTimeout(() => console.log(token), 500)
 		})
 		e.preventDefault();
 	}
 
+	
+	console.log(token)
   return (
 	
 	<div className="limiter">
