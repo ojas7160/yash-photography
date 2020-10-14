@@ -25,7 +25,7 @@ const Login = (props) => {
 			console.log(res);
 			setToken(res.data.token)
 			// updateToken(res.data.token);
-			props.onLogin(res.data.token);
+			props.onLogin(res.data.token, res.data.user);
 			setTimeout(() => console.log(token), 500)
 		})
 		e.preventDefault();
@@ -86,7 +86,7 @@ const Login = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onLogin: (token) => dispatch({type: 'LOGIN', token: token})
+		onLogin: (token, user) => dispatch({type: 'LOGIN', token: token, user: user})
 	}
 }
 

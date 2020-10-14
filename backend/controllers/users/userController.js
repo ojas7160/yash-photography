@@ -58,3 +58,44 @@ exports.createUser = (req, res, next) => {
   })
   
 }
+
+exports.updateUser = (req, res, next) => {
+  User.findOne({_id: req.params.id})
+  .then(oldUser => {
+    console.log(12, oldUser)
+    if(!oldUser) {
+      return res.status(500).json({
+        message: 'User Not Found',
+        success: false
+      })
+    }
+
+    let { password, ...rest } = req.body
+    // console.log(45, newInfo) 
+    User.updateOne({_id: req.params.id}, { $set: rest })
+    .then(newUser => {
+      if(!newUser) {
+        return res.status(500).json({
+          messgae: 'Something went wrong',
+          success: false
+        })
+      }
+      return res.status(200).json({
+        message: 'User Updated',
+        success: true
+      })
+    }, err => {
+      console.log(123, err)
+      return res.status(500).json({
+        message: err,
+        success: false
+      })
+    })
+  }, err => {
+    console.log(err)
+    return res.status(500).json({
+      message: err,
+      success: false
+    })
+  })
+}

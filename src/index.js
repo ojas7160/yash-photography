@@ -13,15 +13,17 @@ import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/lib/integration/react";
 
 import * as serviceWorker from "./serviceWorker";
+import themeReducer from "./store/reducers/themeReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
   loginReducer: loginReducer,
+  themeReducer: themeReducer
 });
 const persistConfig = {
   key: "root",
   storage: storage,
-  whitelist: ["loginReducer"], // which reducer want to store
+  whitelist: ["loginReducer", 'themeReducer'], // which reducer want to store
 };
 const pReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(pReducer, composeEnhancers(applyMiddleware(thunk)));

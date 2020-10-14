@@ -9,7 +9,8 @@ const userSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true, dropDups: true },
   password: { type: String,required: true },
   role: { type: String, default: 'customer' },
-  pincode: { type: Number }
+  pincode: { type: Number },
+  theme: { type: String, default: 'light' }
 }, { timeStamps: { createdAt: 'created_at' } })
 
 userSchema.plugin(uniqueValidator);

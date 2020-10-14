@@ -5,14 +5,15 @@ import { persistReducer } from 'redux-persist';
 
 const initialState = {
   token: null,
-  currentUser: null
+  currentUser: null,
+  user: null
 }
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOGIN:
       console.log(action)
-      return { ...state, token: action.token }
+      return { ...state, token: action.token, user: action.user }
   
     default:
       return state;

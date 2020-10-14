@@ -10,4 +10,8 @@ const login = (data) => {
   return axiosInstance.post(BASEURI + 'login', data);
 }
 
-export default { signup, login };
+const updateUser = (data) => {
+  return axiosInstance.put(BASEURI + `updateUser/${data._id}`, data)
+}
+
+export default { signup, login, updateUser };
