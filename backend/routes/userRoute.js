@@ -6,5 +6,5 @@ const usersController = require('../controllers/users/userController');
 router.post('/login', usersController.userLogin);
 router.post('/signup', usersController.createUser);
 router.put('/updateUser/:id', usersController.updateUser)
-
+router.get('/getProfile', usersController.getProfile)
 module.exports = router;

@@ -1448,9 +1448,9 @@ input:required {
       width: 100%;
       border-radius: 50%; }
   .team-content-area h5 {
-    -webkit-transition-duration: 500ms;
+    /* -webkit-transition-duration: 500ms;
     -o-transition-duration: 500ms;
-    transition-duration: 500ms;
+    transition-duration: 500ms; */
     font-size: 20px;
     font-weight: 500;
     margin-bottom: 0; }
@@ -4678,6 +4678,16 @@ input:required {
 	position: absolute;
 	right: 0px;
 	bottom: 0px;
+}
+
+.dark, .dark button {
+  background-color: black !important;
+  color: white !important;
+}
+
+.light, .light button {
+  background-color: white !important;
+  color: black !important;
 }
 
 

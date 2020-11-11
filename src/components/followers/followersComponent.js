@@ -8,7 +8,7 @@ import img15 from '../../img/bg-img/15.jpg'
 import img16 from '../../img/bg-img/16.jpg'
 
 const followers = (props) => (
-  <section className="follow-area clearfix">
+  <section className={props.theme + " follow-area clearfix"}>
     <Container>
       <Row>
         <Col>

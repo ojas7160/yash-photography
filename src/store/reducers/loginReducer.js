@@ -12,9 +12,14 @@ const initialState = {
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOGIN:
-      console.log(action)
       return { ...state, token: action.token, user: action.user }
-  
+    
+    case actionTypes.UPDATE_USER:
+      return { ...state, user: action.user }
+
+    case actionTypes.LOGOUT:
+      return {}
+      
     default:
       return state;
   }

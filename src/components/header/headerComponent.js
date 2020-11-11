@@ -2,20 +2,29 @@ import React from 'react';
 import './headerComponent.css';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import logo from '../../img/core-img/logo.png'
 import { connect } from 'react-redux'
 import * as userService from '../../services/users/userService';
 
-const header = (props) => {
+const Header = (props) => {
+  let user = props.user
+  const dispatch = useDispatch()
+
+  const logout = () => {
+    // useDispatch({type: 'LOGOUT', token: null})
+    props.logout()
+  }
 
   const changeClassName = () => {
-    console.log(props)
-    let user = props.user
-    user.theme = (user.theme && user.theme === 'dark') ? 'light' : 'dark'
+    if(user) {
+      user.theme = (user.theme && user.theme === 'dark') ? 'light' : 'dark'
+    }
     userService.default.updateUser(user)
     .then(res => {
       console.log(res)
       if(res.data.success) {
+        props.updateUser(user)
         props.onChangeTheme(user.theme)
       }
     })
@@ -43,11 +52,12 @@ const header = (props) => {
                     <li className={props.location.pathname === '/home' ? 'active' : ''}><Link to="/home">Home</Link></li>
                     
                     <li className={props.location.pathname === '/about' ? 'active' : ''}><Link to="/about">About</Link></li>
-                    <li className={props.location.pathname === '/gallery' ? 'active' : ''}><Link to="/gallery">Gallery</Link></li>
+                    <li className={props.location.pathname === '/gallery' ? 'active' : ''}><Link to={{ pathname: "/gallery", theme: props.theme }}>Gallery</Link></li>
                     <li className={props.location.pathname === '/contact' ? 'active' : ''}><Link to="/contact">Contact</Link></li>
                     <li className={props.location.pathname === '/login' ? 'active' : ''}><Link to="/login">Login</Link></li>
                     <li className={props.location.pathname === '/signup' ? 'active' : ''}><Link to="/signup">Signup</Link></li>
                     <li ><button className="btn btn-primary" onClick={changeClassName}>Toggle</button></li>
+                    <li onClick={logout}><Link to="">Logout</Link></li>
                   </ul>
 
                   <div className="search-icon" data-toggle="modal" data-target="#searchModal"><i className="ti-search"></i></div>
@@ -63,14 +73,17 @@ const header = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChangeTheme: (theme) => dispatch({ type: 'THEME_CHANGE', theme: theme})
+    onChangeTheme: (theme) => dispatch({ type: 'THEME_CHANGE', theme: theme}),
+    updateUser: (user) => dispatch({type: 'UPDATE_USER', user: user}),
+    logout: () => dispatch({type: 'LOGOUT'})
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    user: state.loginReducer.user
+    user: state.loginReducer.user,
+    theme: state.themeReducer.theme
   }
 } 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(header));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

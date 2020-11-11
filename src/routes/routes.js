@@ -1,5 +1,6 @@
 import React, { lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
+// import { connect } from 'react-redux';
 
 const homeComponent = lazy(() => import('../components/home/homeComponent'));
 const aboutComponent = lazy(() => import('../components/about/aboutComponent'));
@@ -21,5 +22,11 @@ const routes = (props) => {
     </Switch>
   )
 }
+
+// const mapStateToProps = (state) => {
+//   return {
+//     theme: state.themeReducer.theme
+//   }
+// }
 
 export default routes;
