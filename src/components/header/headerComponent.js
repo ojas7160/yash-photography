@@ -27,7 +27,7 @@ const Header = (props) => {
   }, [user])
 
   const changeClassName = () => {
-    if(user && Object.keys(user).length) {
+    if(user && Object.keys(user).length && user._id) {
       user.theme = (user.theme && user.theme === 'dark') ? 'light' : 'dark'
       userService.default.updateUser(user)
       .then(res => {
@@ -39,7 +39,7 @@ const Header = (props) => {
       })
     } else {
       let userTheme = '';
-      // userTheme = localStorage.getItem('theme')
+      userTheme = localStorage.getItem('theme')
       userTheme = (!userTheme || userTheme === 'light') ?  'dark' : 'light' 
       setUser({...user, theme: userTheme})
       localStorage.setItem('theme', userTheme)

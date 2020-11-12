@@ -18,4 +18,8 @@ const getProfile = (id) => {
   return axiosInstance.get(BASEURI + `getProfile?id=${id}`)
 }
 
-export default { signup, login, updateUser, getProfile };
+const uploadImage = (data) => {
+  return axiosInstance.put(BASEURI + `uploadFile/${data.id}`, data)
+}
+
+export default { signup, login, updateUser, getProfile, uploadImage };
