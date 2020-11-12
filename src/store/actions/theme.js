@@ -1,1 +1,2 @@
-export const CHANGE_THEME = 'CHANGE_THEME';
+export const THEME_CHANGE = 'THEME_CHANGE';
+export const LOGOUT = 'LOGOUT';

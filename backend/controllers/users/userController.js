@@ -95,3 +95,26 @@ exports.updateUser = (req, res, next) => {
     })
   })
 }
+
+exports.getProfile = (req, res, next) => {
+  User.findOne({_id: req.query.id})
+  .then(user => {
+    if(!user) {
+      return res.status(401).json({
+        message: 'User not found',
+        status: false
+      })
+    }
+
+    return res.status(200).json({
+      user: user,
+      status: true,
+      message: 'user'
+    })
+  }, err => {
+    return res.status(500).json({
+      message: err,
+      status: false
+    })
+  })
+}

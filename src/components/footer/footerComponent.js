@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import logo2 from '../../img/core-img/logo2.png'
 
 const footer = (props) => (
-  <footer className="footer-area">
+  <footer className={props.theme + " footer-area"}>
     <Container>
       <Row>
         <Col>

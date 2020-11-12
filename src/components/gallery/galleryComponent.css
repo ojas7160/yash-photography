@@ -102,5 +102,14 @@ input[type=range]::-moz-range-track {
 	position: relative;
 	outline: none;    
 }
+.dark, .dark button {
+  background-color: black !important;
+  color: white !important;
+}
+
+.light, .light button {
+  background-color: white !important;
+  color: black !important;
+}
  
 

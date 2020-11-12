@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
 import ReactCompareImage from 'react-compare-image';
 import ImageSlider from "react-image-comparison-slider";
+import { useSelector } from 'react-redux'
 
 import './galleryComponent.css';
 import img3 from '../../img/bg-img/3.jpg'
@@ -19,8 +20,17 @@ import img38 from '../../img/bg-img/38.jpg';
 
 const Gallery = (props) => {
   const currentPath = props.location.pathname
+  const [ theme, setTheme ] = useState('light')
+
   
+  const state = useSelector(state => state.themeReducer.theme)
+  // setTheme(state)
   useEffect(() => {
+    if(props.location.theme || props.theme || state) {
+      let t = props.theme || state || props.location.theme
+      setTheme(t)
+    }
+    
     var imageContainer = document.querySelector("#top-image");
     var image = imageContainer.querySelector("img");
     var range = document.querySelector("#range-input");
@@ -28,7 +38,7 @@ const Gallery = (props) => {
     range.oninput = function() {
       imageContainer.style.width = this.value + "%";
     }
-  }, [])
+  }, [props, state])
 
   return (
     <div>
@@ -53,7 +63,7 @@ const Gallery = (props) => {
         </section> : null
       }
       
-      <div className="alime-portfolio-area section-padding-80 clearfix">
+      <div className={theme + " alime-portfolio-area section-padding-80 clearfix"}>
         <Container>
           <Row>
             <Col>
