@@ -12,8 +12,8 @@ const connectionString = 'mongodb+srv://ojas7160:ojas7160@cluster0-02ba1.mongodb
 
 app.use(bodyParser.json()); // parse request body
 app.use(bodyParser.urlencoded({extended: true}));
-app.use("/images", express.static(path.join(__dirname, "/images"))); // tells express to pick images after path 'host/images/pic_name' to redirect it from images folder
-app.use("/images/postImages", express.static(path.join(__dirname, "/images/postImages")));
+app.use("/images", express.static(path.join(__dirname, "/assets/images"))); // tells express to pick images after path 'host/images/pic_name' to redirect it from images folder
+// app.use("/images/postImages", express.static(path.join(__dirname, "/images/postImages")));
 
 mongoose.connect(connectionString).
 then(() => {

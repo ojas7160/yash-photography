@@ -18,6 +18,7 @@ const loginReducer = (state = initialState, action) => {
       return { ...state, user: action.user }
 
     case actionTypes.LOGOUT:
+      localStorage.clear();
       return {}
       
     default:

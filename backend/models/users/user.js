@@ -10,7 +10,8 @@ const userSchema = mongoose.Schema({
   password: { type: String,required: true },
   role: { type: String, default: 'customer' },
   pincode: { type: Number },
-  theme: { type: String, default: 'light' }
+  theme: { type: String, default: 'light' },
+  imagePath: { type: String }
 }, { timeStamps: { createdAt: 'created_at' } })
 
 userSchema.plugin(uniqueValidator);

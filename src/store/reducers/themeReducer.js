@@ -9,6 +9,7 @@ const themeReducer = (state = initialState, action) => {
     case actionTypes.THEME_CHANGE:
       return { ...state, theme: action.theme }
     case actionTypes.LOGOUT:
+      localStorage.clear();
       return {}
     default:
       return state

@@ -10,12 +10,13 @@ const Contact = (props) => {
   const theme = useSelector(state => state.themeReducer.theme)
 
   useEffect(() => {
-    console.log(user)
-    userService.default.getProfile(user._id)
-    .then(res => {
-      console.log(res)
-      setProfile(res.data.user)
-    })
+    if(user && Object.keys(user).length) {
+      userService.default.getProfile(user._id)
+      .then(res => {
+        console.log(res)
+        setProfile(res.data.user)
+      })
+    }
   }, [])
 
   return (

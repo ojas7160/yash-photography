@@ -118,3 +118,45 @@ exports.getProfile = (req, res, next) => {
     })
   })
 }
+
+exports.uploadFile = (req, res, next) => {
+  let imagePath;
+  const url = req.protocol + '://' + req.get('host');
+  User.findOne({_id: req.query.id})
+  .then(user => {
+    if(!user) {
+      return res.status(500).json({
+        message: 'User not found',
+        status: false
+      })
+    }
+
+    if(req.file) {
+      imagePath = url + '/assets/images/' + req.file.filename
+    }
+
+    User.updateOne({_id: req.query.id}, { $set: {imagePath: imagePath} })
+    .then(updatedUser => {
+      if(!updatedUser) {
+        return res.status(500).json({
+          message: 'User not found while updating',
+          status: false
+        })
+      }
+      return res.status(400).json({
+        message: 'Success',
+        status: true
+      })
+    }, err => {
+      return res.status(500).json({
+        message: err,
+        status: false
+      })
+    })
+  }, err => {
+    return res.status(500).json({
+      message: err,
+      status: false
+    })
+  })
+}
