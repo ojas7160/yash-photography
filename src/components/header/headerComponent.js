@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './headerComponent.css';
 import { Link, withRouter } from 'react-router-dom';
-import { Button, Container } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { Container } from 'react-bootstrap';
 import logo from '../../img/core-img/logo.png'
 import { connect } from 'react-redux'
 import * as userService from '../../services/users/userService';
 
 const Header = (props) => {
   const [user, setUser] = useState(props.user || {})
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   const logout = () => {
     // useDispatch({type: 'LOGOUT', token: null})
@@ -72,6 +71,7 @@ const Header = (props) => {
                     <li className={props.location.pathname === '/contact' ? 'active' : ''}><Link to="/contact">Contact</Link></li>
                     <li className={props.location.pathname === '/signup' ? 'active' : ''}><Link to="/signup">Signup</Link></li>
                     <li ><button className="btn btn-primary" onClick={changeClassName}>Toggle</button></li>
+                    <li><Link to="/profile">Profile</Link></li>
                     {isUser ? <li onClick={logout}><Link to="">Logout</Link></li> : <li className={props.location.pathname === '/login' ? 'active' : ''}><Link to="/login">Login</Link></li>}
                   </ul>
 

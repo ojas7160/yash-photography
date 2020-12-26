@@ -22,4 +22,5 @@ const uploadImage = (data) => {
   return axiosInstance.put(BASEURI + `uploadFile/${data.id}`, data)
 }
 
+
 export default { signup, login, updateUser, getProfile, uploadImage };

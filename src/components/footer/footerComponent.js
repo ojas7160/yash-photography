@@ -14,29 +14,29 @@ const footer = (props) => (
                 <script>document.write(new Date().getFullYear());</script> All
                 rights reserved | This template is made with{" "}
                 <i className="fa fa-heart-o" aria-hidden="true"></i> by{" "}
-                <a href="https://colorlib.com" target="_blank">
+                <a href="https://colorlib.com" target="_blank" rel="noopener noreferrer">
                   Colorlib
                 </a>
               </p>
             </div>
 
             <div className="footer-logo">
-              <a href="#">
+              <a>
                 <img src={logo2} alt="" />
               </a>
             </div>
 
             <div className="social-info">
-              <a href="#">
+              <a>
                 <i className="ti-facebook" aria-hidden="true"></i>
               </a>
-              <a href="#">
+              <a>
                 <i className="ti-twitter-alt" aria-hidden="true"></i>
               </a>
-              <a href="#">
+              <a>
                 <i className="ti-linkedin" aria-hidden="true"></i>
               </a>
-              <a href="#">
+              <a>
                 <i className="ti-pinterest" aria-hidden="true"></i>
               </a>
             </div>

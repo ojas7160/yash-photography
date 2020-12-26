@@ -15,11 +15,11 @@ const Login = (props) => {
 	// 	setToken(t)
 	// 	console.log(token)
 	// }
+	//IGQVJWTUxSSTRvcnZAIVXEzUTl5NGRRZAldXZA0N6N25CQWtoNk5FMmN3SkFrcTB5MXoyb2N0Wk00eGZAmb3hNWTlzdm9JRDRhZA3lKWGJBb0hOQzFXYU94Vi1WTUNFOHR0ZATVuWGRMaV82eTBybnd4OV9uLQZDZD
 
 
 	const login = (e) => {
 		// console.log(props);
-		console.log(email, password, token)
 		userService.default.login({email: email, password: window.btoa(password)})
 		.then(res => {
 			console.log(res);
@@ -31,8 +31,6 @@ const Login = (props) => {
 		e.preventDefault();
 	}
 
-	
-	console.log(token)
   return (
 	
 	<div className="limiter">

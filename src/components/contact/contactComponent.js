@@ -17,7 +17,7 @@ const Contact = (props) => {
         setProfile(res.data.user)
       })
     }
-  }, [])
+  }, [user])
 
   return (
     <div>
@@ -66,13 +66,13 @@ const Contact = (props) => {
               </div>
               <div className="contact-info mb-30">
                 <p>Call Us</p>
-                <a href="#">{profile.contact}</a>
+                <a>{profile.contact}</a>
               </div>
             </div>
             <div className="col-12 col-md-6 col-lg-3">
               <div className="contact-info mb-30">
                 <p>Visit Us</p>
-                <a href="#">{profile.address} {profile.pincode}</a>
+                <a>{profile.address} {profile.pincode}</a>
               </div>
             </div>
           </div>

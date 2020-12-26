@@ -1,4 +1,3 @@
-import { bindActionCreators } from 'redux';
 import * as actionTypes from '../actions/login';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';

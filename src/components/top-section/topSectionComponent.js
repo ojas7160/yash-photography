@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import './topSectionComponent.css';
 import slide1 from "../../img/bg-img/1.jpg";
 import slide2 from "../../img/bg-img/2.jpg";
-import * as userService from '../../services/users/userService';
 import { connect } from 'react-redux';
 import { Container, Col, Row, Carousel } from 'react-bootstrap';
 

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
-import ReactCompareImage from 'react-compare-image';
-import ImageSlider from "react-image-comparison-slider";
 import { useSelector } from 'react-redux'
 
 import './galleryComponent.css';
@@ -32,7 +30,7 @@ const Gallery = (props) => {
     }
     
     var imageContainer = document.querySelector("#top-image");
-    var image = imageContainer.querySelector("img");
+    // var image = imageContainer.querySelector("img");
     var range = document.querySelector("#range-input");
   
     range.oninput = function() {
@@ -43,7 +41,7 @@ const Gallery = (props) => {
   return (
     <div>
       {
-        currentPath == '/gallery' ? 
+        currentPath === '/gallery' ? 
         <section className="breadcrumb-area bg-img bg-overlay jarallax" style={{backgroundImage: `url(${img38})`}}>
           <div className="container h-100">
             <div className="row h-100 align-items-center">

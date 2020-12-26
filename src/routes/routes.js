@@ -8,6 +8,7 @@ const galleryComponent = lazy(() => import('../components/gallery/galleryCompone
 const contactComponent = lazy(() => import ('../components/contact/contactComponent'));
 const signupComponent = lazy(() => import ('../components/signup/signupComponent'));
 const loginComponent = lazy(() => import('../components/login/loginComponent'));
+const profileComponent = lazy(() => import('../components/profile/profileComponent'));
 
 const routes = (props) => {
   return (
@@ -18,6 +19,7 @@ const routes = (props) => {
       <Route path="/contact" component={ contactComponent } />
       <Route path="/signup" component={ signupComponent } />
       <Route path="/login" component={loginComponent} />
+      <Route path='/profile' component={profileComponent} />
       <Route path = "/" exact component = { homeComponent } />
     </Switch>
   )
