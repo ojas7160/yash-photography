@@ -11,6 +11,7 @@ const initialState = {
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOGIN:
+      localStorage.setItem('token', action.token)
       return { ...state, token: action.token, user: action.user }
     
     case actionTypes.UPDATE_USER:

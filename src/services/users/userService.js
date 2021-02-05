@@ -10,8 +10,8 @@ const login = (data) => {
   return axiosInstance.post(BASEURI + 'login', data);
 }
 
-const updateUser = (data) => {
-  return axiosInstance.put(BASEURI + `updateUser/${data._id}`, data)
+const updateUser = (data, id) => {
+  return axiosInstance.put(BASEURI + `updateUser/${id}`, data)
 }
 
 const getProfile = (id) => {

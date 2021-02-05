@@ -3,6 +3,15 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const atob = require('atob');
+const aws = require('aws-sdk');
+const fs = require('fs');
+
+aws.config.setPromisesDependency();
+aws.config.update({
+  accessKeyId: 'AKIAIBCGJUKAK2Y4KURQ',
+  secretAccessKey: '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',
+  region: 'us-east-1'
+});
 
 exports.userLogin = (req, res, next) => {
   const email = req.body.email;
@@ -42,13 +51,15 @@ exports.userLogin = (req, res, next) => {
 exports.createUser = (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then(hashedPassword => {
     let reqBody = {...req.body, password: hashedPassword}
-
+    
+    
     const user = new User(reqBody)
     user.save()
     .then(newUser => {
       res.json({
         message: 'Success!',
-        user: newUser
+        user: newUser,
+        s3Data: data
       })
     }).catch(err => {
       res.status(500).json({
@@ -60,6 +71,7 @@ exports.createUser = (req, res, next) => {
 }
 
 exports.updateUser = (req, res, next) => {
+
   User.findOne({_id: req.params.id})
   .then(oldUser => {
     if(!oldUser) {
@@ -70,22 +82,34 @@ exports.updateUser = (req, res, next) => {
     }
 
     let { password, ...rest } = req.body
-    User.updateOne({_id: req.params.id}, { $set: rest })
-    .then(newUser => {
-      if(!newUser) {
+    const s3 = new aws.S3();
+    var params = {
+      ACL: 'public-read',
+      Bucket: 'yashpictures',
+      Body: fs.createReadStream(req.file.path),
+      Key: `users/${req.file.originalname}`
+    };
+
+    s3.upload(params, (err, data) => {
+      if (err) {
+      }
+      User.updateOne({_id: req.params.id}, { $set: {...rest, imagePath: data.Location} })
+      .then(newUser => {
+        if(!newUser) {
+          return res.status(500).json({
+            messgae: 'Something went wrong',
+            success: false
+          })
+        }
+        return res.status(200).json({
+          message: 'User Updated',
+          success: true
+        })
+      }, err => {
         return res.status(500).json({
-          messgae: 'Something went wrong',
+          message: err,
           success: false
         })
-      }
-      return res.status(200).json({
-        message: 'User Updated',
-        success: true
-      })
-    }, err => {
-      return res.status(500).json({
-        message: err,
-        success: false
       })
     })
   }, err => {

@@ -3,6 +3,7 @@ import './profileComponent.css';
 import profileImg from '../../img/bg-img/tm-easy-profile.jpg';
 import bgImg from '../../img/bg-img/tm-bg-slide-1.jpg'
 import * as userService from '../../services/users/userService';
+import { connect } from 'react-redux';
 
 const Profile = (props) => {
   const [user, setUser] = useState({name: '', role: '', address: '', email: '', phone: '', file: {}})
@@ -16,8 +17,20 @@ const Profile = (props) => {
     setUser({...user, file: event.target.files[0]})
   }
 
-  const save = () => {
+  const save = ($event) => {
     console.log(user)
+    // $event.stopPropagation();
+    let formData = new FormData();
+    for(let i in user) {
+      formData.append(i, user[i])       
+    }
+    console.log(userService)
+    userService.default.updateUser(formData, props.user._id)
+    .then(res => {
+      console.log(res)
+
+    }, err => console.log(err))
+    $event.preventDefault();
   }
 
   return (
@@ -126,11 +139,17 @@ const Profile = (props) => {
         </div>
       </section>
       <footer className="footer">
-        <button className="btn btn-primary" style={{padding: '5px 25px'}} onClick={save}>Save</button>
+        <button className="btn btn-primary" style={{padding: '5px 25px'}} onClick={($e) => save($e)}>Save</button>
       </footer>
     </div>
   )
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.loginReducer.user
+  }
+}
 
-export default Profile;
+
+export default connect(mapStateToProps)(Profile);
