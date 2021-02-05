@@ -93,6 +93,7 @@ exports.updateUser = (req, res, next) => {
     s3.upload(params, (err, data) => {
       if (err) {
       }
+      fs.unlinkSync(req.file.path);
       User.updateOne({_id: req.params.id}, { $set: {...rest, imagePath: data.Location} })
       .then(newUser => {
         if(!newUser) {
